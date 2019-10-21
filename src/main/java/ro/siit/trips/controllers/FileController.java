@@ -19,16 +19,17 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @GetMapping(value ="/files/{filename:.+}", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/files/{filename:.+}", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
     public ResponseEntity<Resource> getFile(@PathVariable String filename) {
 
         Resource file = fileService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\""+ file.getFilename()+ "\"").body(file);
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+
     @PostMapping("/")
-    public String handleFileUpload(@RequestParam("photo") String photo,@RequestParam("file") MultipartFile file,
+    public String handleFileUpload(@RequestParam("photo") String photo, @RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
         fileService.store(photo, file);

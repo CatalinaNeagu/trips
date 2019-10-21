@@ -21,14 +21,14 @@ public class PersonController {
     @Autowired
     private PersonRepository personRepository;
 
-    @RequestMapping(value= "/person")
-    public String person(Model model){
+    @RequestMapping(value = "/person")
+    public String person(Model model) {
         Person person = new Person();
         model.addAttribute("person", person);
         return "addperson";
     }
 
-    @RequestMapping(value="/addperson", method = RequestMethod.POST)
+    @RequestMapping(value = "/addperson", method = RequestMethod.POST)
     public String addPerson(@Valid @ModelAttribute Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/addperson";
@@ -39,6 +39,7 @@ public class PersonController {
         Person saved = personRepository.save(person);
         return "login";
     }
+
     @RequestMapping(value = "/personToUpdate", method = RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute Person person) {
         ModelAndView model = new ModelAndView("updatePerson");
@@ -49,14 +50,13 @@ public class PersonController {
         return model;
     }
 
-    @RequestMapping(value="/updatedPerson", method = RequestMethod.POST)
+    @RequestMapping(value = "/updatedPerson", method = RequestMethod.POST)
     public ModelAndView editPerson(@Valid @ModelAttribute Person person, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("login");
         ModelAndView model2 = new ModelAndView("updatePerson");
         if (bindingResult.hasErrors()) {
             return model2;
         }
-
         Person loggedPerson = personRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         loggedPerson.setFirstName(person.getFirstName());
         loggedPerson.setLastName(person.getLastName());
@@ -70,5 +70,5 @@ public class PersonController {
 
         return model;
     }
-    }
+}
 

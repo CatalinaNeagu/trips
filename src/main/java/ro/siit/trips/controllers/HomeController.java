@@ -14,20 +14,20 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
-    @GetMapping(path="/login")
-    public String login(){
+    @GetMapping(path = "/login")
+    public String login() {
         return "login";
     }
 
     @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
-    public String logoutDo(HttpServletRequest request,HttpServletResponse response){
-        HttpSession session= request.getSession(false);
+    public String logoutDo(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(false);
         SecurityContextHolder.clearContext();
-        session= request.getSession(false);
-        if(session != null) {
+        session = request.getSession(false);
+        if (session != null) {
             session.invalidate();
         }
-        for(Cookie cookie : request.getCookies()) {
+        for (Cookie cookie : request.getCookies()) {
             cookie.setMaxAge(0);
         }
 

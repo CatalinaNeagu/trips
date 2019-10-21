@@ -14,10 +14,10 @@ public class PersonService {
     PersonRepository personRepository;
 
 
-public void updateUser(Long id, Person person){
-    if (person.getId().equals(id)){
-        personRepository.save(person);
+    public void updateUser(Long id, Person person) {
+        if (person.getId().equals(id)) {
+            personRepository.save(person);
+        }
     }
-}
 
 }

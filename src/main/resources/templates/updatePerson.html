@@ -18,7 +18,6 @@
                     <form method="POST" th:action="@{/updatedPerson}" th:object="${person}" autocomplete="off"
                           class="text-center border border-light px-5 py-2 mx-auto">
                         <p class="h4 mb-3">Edit your profile</p>
-
                         <div class="form-row mb-2">
                             <div class="col">
                                 <label for="defaultRegisterFormFirstName">First Name:</label>
@@ -53,7 +52,8 @@
                                th:field="*{address}" th:value="${address}">
 
                         <label for="defaultRegisterPhone">Phone number:</label>
-                        <small class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:value="${phone}"></small>
+                        <small class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"
+                               th:value="${phone}"></small>
                         <input type="text" id="defaultRegisterPhone" class="form-control mb-2" th:field="*{phone}"
                                placeholder="The inserted value must be a valid Romanian phone">
 
@@ -67,8 +67,6 @@
     </div>
 </div>
 </body>
-
-
 
 
 <!--<!DOCTYPE HTML>-->
@@ -143,11 +141,7 @@
 <!--</body>-->
 
 
-
-
 <!--</html>-->
-
-
 
 
 <!--<!DOCTYPE HTML>-->

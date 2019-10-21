@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .mvcMatchers()
                 .hasAnyRole()
-        .antMatchers("/css/**").permitAll()
+                .antMatchers("/css/**").permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest()

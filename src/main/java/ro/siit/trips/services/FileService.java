@@ -14,9 +14,8 @@ public class FileService {
 
     public static void store(String photo, MultipartFile file) {
 
-        try(OutputStream outputStream = new FileOutputStream(new File(ROOT_DIR+photo));
-        InputStream inputStream = file.getInputStream();)
-        {
+        try (OutputStream outputStream = new FileOutputStream(new File(ROOT_DIR + photo));
+             InputStream inputStream = file.getInputStream();) {
 
             int read = 0;
             byte[] bytes = new byte[1024];
@@ -29,7 +28,7 @@ public class FileService {
     }
 
     public Resource loadAsResource(String filename) {
-        return new FileSystemResource(ROOT_DIR+filename);
+        return new FileSystemResource(ROOT_DIR + filename);
     }
 
 }

@@ -41,7 +41,7 @@ public class TripController {
     }
 
     @RequestMapping(value = "/addtrip", method = RequestMethod.POST)
-    public ModelAndView addTrip( @RequestParam("file") MultipartFile file, @RequestParam("file2") MultipartFile file2, @Valid @ModelAttribute Trip trip, BindingResult bindingResult) {
+    public ModelAndView addTrip(@RequestParam("file") MultipartFile file, @RequestParam("file2") MultipartFile file2, @Valid @ModelAttribute Trip trip, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("successtrip");
         ModelAndView model2 = new ModelAndView("/addtrip");
 
@@ -73,7 +73,7 @@ public class TripController {
         ModelAndView model = new ModelAndView("tripTemplate");
         ModelAndView model2 = new ModelAndView("redirect:/trip");
         Person loggedPerson = personRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
-        if (loggedPerson.getTrips().size() == 0){
+        if (loggedPerson.getTrips().size() == 0) {
             return model2;
         }
         Trip currentTrip = null;
@@ -142,8 +142,6 @@ public class TripController {
         Person loggedPerson = personRepository.findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
         trip.setPerson(loggedPerson);
         Trip modifiedTrip = tripRepository.findById(trip.getId()).get();
-
-
         modifiedTrip.setTripName(trip.getTripName());
 
         modifiedTrip.setImpressions(trip.getImpressions());
@@ -153,7 +151,6 @@ public class TripController {
         if (file.isEmpty()) {
             modifiedTrip.setPhoto1(modifiedTrip.getPhoto1());
         } else {
-            modifiedTrip.setPhoto1(UUID.randomUUID().toString());
             modifiedTrip.setPhoto1(UUID.randomUUID().toString());
             fileService.store(modifiedTrip.getPhoto1(), file);
         }
